@@ -9,41 +9,41 @@
 # Components
 * Index
 * App
-  -User
-    -CreateUser
-    -DisplayUser
+  * -User
+    * -CreateUser
+    * -DisplayUser
 
-  -StockContainer
-    -StockInput
-    -DisplayStock
+  * -StockContainer
+    * -StockInput
+    * -DisplayStock
 
 # Model Associations
-  User has_many portfolios
-  User has_many stocks through portfolios
+  * User has_many portfolios
+  * User has_many stocks through portfolios
 
-  Portfolio belongs_to User
-  Portfolio has_many stocks through PortfolioStocks
+  * Portfolio belongs_to User
+  * Portfolio has_many stocks through PortfolioStocks
 
-  Stock has_many portfolios through PortfolioStocks
+  * Stock has_many portfolios through PortfolioStocks
 
-  PortfolioStocks belongs_to Stock
-  PortfolioStocks belongs_to Portfolio
+  * PortfolioStocks belongs_to Stock
+  * PortfolioStocks belongs_to Portfolio
 
 # Data Tables
   * User
-      -name
-      -email
-      -password
+      * -name
+      * -email
+      * -password
 
   * Portfolio
-      -name
+      * -name
 
   * Stock
-      -symbol
+      * -symbol
 
   * PortfolioStocks
-      -stock_id
-      -portfolio_id
+      * -stock_id
+      * -portfolio_id
 
 # Technologies Used
 API: IEX for stock data, TradingView for charting
