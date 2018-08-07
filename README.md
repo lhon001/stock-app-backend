@@ -1,3 +1,4 @@
+# README stock-app-backend
 # Motivation/Inspiration
 -The 2008/2009 Market Crash left an indelible mark on millennials scaring them from seeing the stock market as an investment tool that will allow them to live comfortable when they retire.
 
