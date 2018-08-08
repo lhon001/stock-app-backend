@@ -38,8 +38,10 @@
 
   * Portfolio
       * -name
+      * -user_id
 
   * Stock
+      * -companyName
       * -symbol
 
   * PortfolioStocks
