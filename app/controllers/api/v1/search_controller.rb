@@ -4,6 +4,9 @@ class Api::V1::SearchController < ApplicationController
 
   def show
     # byebug
+    chart = RestClient.get("https://api.iextrading.com/1.0/stock/#{search_params}/chart")
+    chart_resp = JSON.parse(chart)
+
     stats = RestClient.get("https://api.iextrading.com/1.0/stock/#{search_params}/stats")
     stats_resp = JSON.parse(stats)
 
@@ -21,6 +24,7 @@ class Api::V1::SearchController < ApplicationController
     quote_resp = JSON.parse(quote)
 
     formatted_json = {
+      chart: chart_resp,
       companyName: company_resp["companyName"],
       symbol: company_resp["symbol"],
       description: company_resp["description"],
