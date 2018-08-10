@@ -3,7 +3,6 @@ require 'bigdecimal/util'
 class Api::V1::SearchController < ApplicationController
 
   def show
-    # byebug
     chart = RestClient.get("https://api.iextrading.com/1.0/stock/#{search_params}/chart")
     chart_resp = JSON.parse(chart)
 
@@ -19,7 +18,6 @@ class Api::V1::SearchController < ApplicationController
     price = RestClient.get("https://api.iextrading.com/1.0/stock/#{search_params}/price")
     price_resp = price.to_f
 
-    # byebug
     quote = RestClient.get("https://api.iextrading.com/1.0/stock/#{search_params}/quote")
     quote_resp = JSON.parse(quote)
 
