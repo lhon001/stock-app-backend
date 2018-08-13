@@ -18,7 +18,9 @@ class Api::V1::UsersController < ApplicationController
 
   # display a user upon login
   def show
-    render json: @user
+    # byebug
+    user = User.find(params[:id])
+    render json: user
   end
 
   # def login
@@ -50,6 +52,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def find_user
+    # byebug
     @user = User.find(params[:id])
   end
 
