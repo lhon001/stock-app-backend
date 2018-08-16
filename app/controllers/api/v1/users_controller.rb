@@ -1,12 +1,12 @@
 class Api::V1::UsersController < ApplicationController
-
+  before_action :find_user, only: [:show, :get_user_portfolios]
   # create a user
   def create
     user = User.new(name: user_params[:name], username: user_params[:username], password: user_params[:password])
     if user.valid?
-      # default_portfolio = Portfolio.create(name:'Stock Portfolio')
       if !User.find_by(username: user_params[:username])
         user.save
+        default_portfolio = Portfolio.create(name:'Stock Portfolio', user_id: user.id)
         render json: user, status: :created
       else
         render json: {error: "Username already taken"}
@@ -23,15 +23,6 @@ class Api::V1::UsersController < ApplicationController
     render json: user
   end
 
-  # def login
-  #   user = User.find_by(username: user_params[:username])
-  #   if user && user.authenticate(password: user_params[:password])
-  #     render json: user
-  #   else
-  #     render json: {error: "Could not login"}
-  #   end
-  # end
-
   def login
   # byebug
    user = User.find_by(username: user_params[:username])
@@ -40,9 +31,27 @@ class Api::V1::UsersController < ApplicationController
    else
      render json: {error: "login failed"}, status: 401
    end
- end
+  end
 
   def logout
+  end
+
+  def add_stock
+    # add an already saved(created) stock to this user
+  end
+
+  def get_stock
+    # byebug
+    user = User.find(params[:id])
+    users_stocks = user.stocks
+
+    render json: users_stocks
+  end
+
+  def get_user_portfolios
+    user_portfolios = @user.portfolios
+
+    render json: user_portfolios
   end
 
   private
@@ -54,6 +63,10 @@ class Api::V1::UsersController < ApplicationController
   def find_user
     # byebug
     @user = User.find(params[:id])
+  end
+
+  def find_user_portfolios
+    @user_protfolios = @user.portfolios
   end
 
 end
