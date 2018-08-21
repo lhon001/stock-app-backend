@@ -10,6 +10,16 @@ class Api::V1::StocksController < ApplicationController
     end
   end
 
+  def index
+    stock = Stock.all
+    render json: stock
+  end
+
+  def destroy
+    stock = Stock.find(params[:id])
+    stock.delete
+  end
+
   private
 
   def stock_params

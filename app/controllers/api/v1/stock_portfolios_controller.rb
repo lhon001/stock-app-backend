@@ -11,10 +11,18 @@ class Api::V1::StockPortfoliosController < ApplicationController
     end
   end
 
+  def show
+    byebug
+    portfolio = PortfolioStock.find_by(portfolio_id: params[:id])
+    stocks = portfolio.stocks
+
+    render json: stocks
+  end
+
   private
 
   def portfolio_stock_params
-    params.permit(:portfolio_id, :stock_id)
+    params.permit(:portfolio_id, :stock_id, :id)
   end
 
 end
