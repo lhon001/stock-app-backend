@@ -16,8 +16,10 @@ class Api::V1::StocksController < ApplicationController
   end
 
   def destroy
+    # byebug
     stock = Stock.find(params[:id])
     stock.delete
+    render json: {status: "Stock successfully deleted"}
   end
 
   private
