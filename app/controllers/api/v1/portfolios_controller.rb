@@ -8,15 +8,21 @@ class Api::V1::PortfoliosController < ApplicationController
   def create
     portfolio = Portfolio.new(name: portfolio_params[:name], user_id: portfolio_params[:user_id])
     if portfolio.valid?
-      if !Portfolio.find_by(name: portfolio_params[:name])
+      # if !Portfolio.find_by(name: portfolio_params[:name])
         portfolio.save
         render json: portfolio, status: :created
-      else
-        render json: {error: "Portfolios cannot have the same name"}
-      end
+      # else
+      #   render json: {error: "Portfolios cannot have the same name"}
+      # end
     else
       render json: {error: "Could not create portfolio"}
     end
+  end
+
+  def destroy
+    portfolio = Portfolio.find(params[:id])
+    portfolio.delete
+    render json: {status: "Portfolio successfully deleted"}
   end
 
   private
