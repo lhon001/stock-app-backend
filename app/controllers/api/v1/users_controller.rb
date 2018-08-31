@@ -2,6 +2,7 @@ class Api::V1::UsersController < ApplicationController
   before_action :find_user, only: [:show, :get_user_portfolios]
   # create a user
   def create
+    # byebug
     user = User.new(name: user_params[:name], username: user_params[:username], password: user_params[:password])
     if user.valid?
       if !User.find_by(username: user_params[:username])
