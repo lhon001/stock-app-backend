@@ -49,7 +49,7 @@
       * -portfolio_id
 
 # Technologies Used
-API: IEX for stock data, TradingView for charting
+API: IEX for stock data, Chart.js for charting
 
 # README
 

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       post '/login', to: 'users#login'
       get '/user_portfolio/:id', to: 'users#get_user_portfolios'
       get '/get_stock/:id', to: 'users#get_stock'
+      get '/get_news/:id', to: 'search#get_news'
     end
   end
 end
