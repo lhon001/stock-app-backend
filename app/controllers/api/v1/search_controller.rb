@@ -54,7 +54,7 @@ class Api::V1::SearchController < ApplicationController
   end
 
   def get_news
-    news = RestClient.get("https://api.iextrading.com/1.0/stock/#{search_params}/news/last/5")
+    news = RestClient.get("https://api.iextrading.com/1.0/stock/#{search_params}/news")
 
     render json: news
   end
