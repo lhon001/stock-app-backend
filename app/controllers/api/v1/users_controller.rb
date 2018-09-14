@@ -2,7 +2,6 @@ class Api::V1::UsersController < ApplicationController
   before_action :find_user, only: [:show, :get_user_portfolios]
   # create a user
   def create
-    # byebug
     user = User.new(name: user_params[:name], username: user_params[:username], password: user_params[:password])
     if user.valid?
       if !User.find_by(username: user_params[:username])
@@ -19,13 +18,17 @@ class Api::V1::UsersController < ApplicationController
 
   # display a user upon login
   def show
-    # byebug
     user = User.find(params[:id])
     render json: user
   end
 
+  def destroy
+    user = User.find(params[:id])
+    user.delete
+    render json: {status: "User Deleted"}
+  end
+
   def login
-  # byebug
    user = User.find_by(username: user_params[:username])
    if user && user.authenticate(user_params[:password])
      render json: user
@@ -34,15 +37,7 @@ class Api::V1::UsersController < ApplicationController
    end
   end
 
-  def logout
-  end
-
-  def add_stock
-    # add an already saved(created) stock to this user
-  end
-
   def get_stock
-    # byebug
     user = User.find(params[:id])
     users_stocks = user.stocks
 
@@ -62,7 +57,6 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def find_user
-    # byebug
     @user = User.find(params[:id])
   end
 
