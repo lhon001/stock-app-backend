@@ -1,11 +1,13 @@
 require 'bigdecimal'
 require 'bigdecimal/util'
-require 'config/keys'
+# require 'config/keys'
 
 class Api::V1::SearchController < ApplicationController
 
-$base_URL = "https://cloud.iexapis.com/stable/stock/"
-$token = process.env.PUBLIC_TOKEN
+# $base_URL = "https://cloud.iexapis.com/stable/stock/"
+$base_URL = "https://sandbox.iexapis.com/stable/stock/"
+$token = "Tpk_f32c6a8a3c4947ddb69071dd307fccc5"
+# $token = process.env.PUBLIC_TOKEN
 
   def show
     chart = RestClient.get($base_URL + "#{search_params}/chart?token=" + $token)
